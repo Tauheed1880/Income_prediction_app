@@ -31,44 +31,42 @@ hoursperweek = st.number_input("Enter your hoursperweek")
 
 nativecountry = st.text_input("Enter your native country name")
 
-# prediction button 
+
 if st.button("prediction"):
 
     data = {
-            "age":int(age),
-            "workclass":workclass,
-            "education":education,
-            "educational_num": int(education_num),
-            "marital_status":maritalstatus,
-            "occupation":occupation,
-            "relationship":relationship,
-            "race":race,
-            "gender":gender,
-            "capital_gain": int(capitalgain),
-            "capital_loss": int(capitalloss),
-            "hours_per_week": int(hoursperweek),
-            "native_country": nativecountry
-        }
-    
-    # API request generate
-    
+        "age": int(age),
+        "workclass": workclass,
+        "education": education,
+        "educational_num": int(education_num),
+        "marital_status": maritalstatus,
+        "occupation": occupation,
+        "relationship": relationship,
+        "race": race,
+        "gender": gender,
+        "capital_gain": int(capitalgain),
+        "capital_loss": int(capitalloss),
+        "hours_per_weak": int(hoursperweek),
+        "native_country": nativecountry
+    }
+
     resp = requests.post(
-    "https://tauheed1880-fastapi-backend.hf.space/pred",
-    params=data,
-    timeout=30
-)
+        "https://tauheed1880-fastapi-backend.hf.space/pred",
+        params=data,
+        timeout=30
+    )
 
-st.write("Status code:", resp.status_code)
-st.write("Backend response:", resp.text)
+    st.write("Status code:", resp.status_code)
+    st.write("Backend response:", resp.text)
 
-if resp.status_code == 200:
+    if resp.status_code == 200:
 
-    result = resp.json()
+        result = resp.json()
 
-    if result["prediction"] == 1:
-        st.success("Your salary is more than 50K")
+        if result["prediction"] == 1:
+            st.success("Your salary is more than 50K")
+        else:
+            st.warning("Your salary is less than 50K")
+
     else:
-        st.warning("Your salary is less than 50K")
-
-else:
-    st.error("Backend prediction failed.")
+        st.error("Backend prediction failed.")
