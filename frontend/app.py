@@ -52,12 +52,23 @@ if st.button("prediction"):
     
     # API request generate
     
-    resp = requests.post("https://tauheed1880-fastapi-backend.hf.space/pred", params=data)
-    
+    resp = requests.post(
+    "https://tauheed1880-fastapi-backend.hf.space/pred",
+    params=data,
+    timeout=30
+)
+
+st.write("Status code:", resp.status_code)
+st.write("Backend response:", resp.text)
+
+if resp.status_code == 200:
 
     result = resp.json()
-    
-    if result["prediction"]==1:
-        st.success("your salary is more than 50K")
+
+    if result["prediction"] == 1:
+        st.success("Your salary is more than 50K")
     else:
-        st.warning("you salary is less than 50K")
+        st.warning("Your salary is less than 50K")
+
+else:
+    st.error("Backend prediction failed.")
