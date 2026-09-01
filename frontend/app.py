@@ -27,7 +27,7 @@ capitalgain = st.number_input("Enter your capital gain")
 
 capitalloss = st.number_input("Enter your capital loss")
 
-hoursperweak = st.number_input("Enter your hoursperweak")
+hoursperweek = st.number_input("Enter your hoursperweek")
 
 nativecountry = st.text_input("Enter your native country name")
 
@@ -46,7 +46,7 @@ if st.button("prediction"):
             "gender":gender,
             "capital_gain": int(capitalgain),
             "capital_loss": int(capitalloss),
-            "hours_per_weak": int(hoursperweak),
+            "hours_per_week": int(hoursperweek),
             "native_country": nativecountry
         }
     
