@@ -52,7 +52,7 @@ if st.button("prediction"):
     
     # API request generate
     
-    resp = requests.post("http://127.0.0.1:8000/pred", params=data)
+    resp = requests.post("https://tauheed1880-fastapi-backend.hf.space", params=data)
     
 
     result = resp.json()
